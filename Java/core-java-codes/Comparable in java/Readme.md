@@ -33,78 +33,79 @@ Comparator → defines custom/external ordering outside the class. used when you
 ### important: If want to sort salary wise using Comparable interface. Use as followa:
 
 ##### Employee.java
-public class Employee implements Comparable<Employee>{
-    int id;
-    String name;
-    double salary;
 
-    public Employee(int id, String name, double salary) {
-        this.name = name;
-        this.id = id;
-        this.salary = salary;
-    }
+    public class Employee implements Comparable<Employee>{
+        int id;
+        String name;
+        double salary;
 
-    public int getId() {
-        return id;
-    }
+        public Employee(int id, String name, double salary) {
+            this.name = name;
+            this.id = id;
+            this.salary = salary;
+            }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public String getName() {
-        return name;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
+    
+        public String getName() {
+            return name;
+        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+        public void setName(String name) {
+            this.name = name;
+        }
+    
+        public double getSalary() {
+            return salary;
+        }
 
-    public double getSalary() {
-        return salary;
-    }
+        public void setSalary(double salary) {
+            this.salary = salary;
+        }
+    
+        @Override
+        public String toString() {
+            return "Employee{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", salary=" + salary +
+                    '}'+'\n';
+        }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
+        @Override
+        public int compareTo(Employee o) {
+            return Double.compare(this.salary,o.salary);
+        }
     }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", salary=" + salary +
-                '}'+'\n';
-    }
-
-    @Override
-    public int compareTo(Employee o) {
-        return Double.compare(this.salary,o.salary);
-    }
-}
 
 ##### Main.java
-import java.util.ArrayList;
-import java.util.Collections;
+    import java.util.ArrayList;
+    import java.util.Collections;
+    
+    public class Main{
+        public static void main(String[] args) {
+            System.out.println("Hello world");
 
-public class Main{
-    public static void main(String[] args) {
-        System.out.println("Hello world");
+            ArrayList<Employee> emp = new ArrayList<>();
+            emp.add(new Employee(104,"om",20000));
+            emp.add(new Employee(107,"zebra",20));
+            emp.add(new Employee(102,"dhiraj",35000));
+            emp.add(new Employee(101,"munna",25000));
+            emp.add(new Employee(106,"chotu",19000));
+            emp.add(new Employee(103,"aryan",67000));
+    
+            //System.out.println(emp);
+    
+            Collections.sort(emp);
+            System.out.println(emp);
 
-        ArrayList<Employee> emp = new ArrayList<>();
-        emp.add(new Employee(104,"om",20000));
-        emp.add(new Employee(107,"zebra",20));
-        emp.add(new Employee(102,"dhiraj",35000));
-        emp.add(new Employee(101,"munna",25000));
-        emp.add(new Employee(106,"chotu",19000));
-        emp.add(new Employee(103,"aryan",67000));
-
-        //System.out.println(emp);
-
-        Collections.sort(emp);
-        System.out.println(emp);
-
+        }
     }
-}
 
 ### Note: If you have used Comparable interface you can sort only by single logic. You cant use multiple logics.
